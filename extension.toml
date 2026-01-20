@@ -1,6 +1,6 @@
 id = "jsonl"
 name = "JSONL"
-version = "0.1.0"
+version = "0.1.1"
 schema_version = 1
 authors = ["Ofer Affias <ofer.affias@gmail.com>"]
 description = "JSON Lines (JSONL) syntax highlighting support for Zed"
