@@ -1,5 +1,19 @@
-; Commands: p, r, c, v — highlighted as function calls
-(command) @function.builtin
+; Commands: each gets a distinct color
+; p (put) — standard function color (blue)
+((command) @function
+  (#eq? @function "p"))
+
+; r (remove) — keyword color (red/pink)
+((command) @keyword
+  (#eq? @keyword "r"))
+
+; c (create) — type color (green/teal)
+((command) @type
+  (#eq? @type "c"))
+
+; v (version) — attribute color (yellow/orange)
+((command) @attribute
+  (#eq? @attribute "v"))
 
 ; Comments
 (comment) @comment
