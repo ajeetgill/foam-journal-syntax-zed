@@ -1,85 +1,88 @@
-# JSONL Syntax - Zed Extension
+# FOAM Journal Syntax - Zed Extension
 
-A Zed editor extension that provides syntax highlighting for JSON Lines (JSONL) and Newline Delimited JSON (NDJSON) files.
+A Zed editor extension that provides syntax highlighting for FOAM Journal (`.jrl`) files used by the [FOAM3 framework](https://github.com/kgrgreer/foam3).
 
 ## Overview
 
-JSON Lines is a format for storing structured data with one JSON object per line. Each line is a valid JSON value, making it suitable for streaming and processing large datasets.
+FOAM Journal files (`.jrl`) are the persistence and configuration format for the FOAM3 framework. They contain data entries wrapped in command functions:
 
-```jsonl
-{"name": "John", "age": 30}
-{"name": "Jane", "age": 25}
-{"name": "Bob", "age": 35}
 ```
+// Service definition
+p({
+  "class": "foam.core.boot.CSpec",
+  "name": "myDAO",
+  "serve": true
+})
+
+// Remove entry
+r({"class":"foam.core.auth.Permission","id":"old.permission"})
+```
+
+### Commands
+| Command | Meaning |
+|---------|---------|
+| `p({...})` | **Put** - insert or update a record |
+| `r({...})` | **Remove** - delete a record |
+| `c({...})` | **Create** - create a new record |
+| `v({...})` | **Version** - version marker |
 
 ## Features
 
-- Syntax highlighting for `.jsonl` and `.ndjson` files
-- Automatic file detection
-- Tree-sitter JSON parser for accurate highlighting
-- 2-space indentation default
-- Performance optimized for large files
+- Syntax highlighting for `.jrl` files
+- JSON-level highlighting for object properties, strings, numbers, booleans
+- `class` property values highlighted as types
+- `id` and `name` values highlighted distinctly
+- Bracket matching
+- Code outline support
+- Auto-indentation
 
 ## Installation
 
+### From Extensions Panel
+1. Open Zed
+2. Open Extensions panel (`Cmd+Shift+X` / `Ctrl+Shift+X`)
+3. Search for "FOAM Journal"
+4. Click Install
+
 ### Development Installation
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/[your-username]/jsonl-syntax
-   cd jsonl-syntax
-   ```
-
+1. Clone this repository
 2. In Zed, open command palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
+3. Run "zed: install dev extension" and select this folder
 
-3. Run "zed: install dev extension" and select the `jsonl-syntax` folder
+## Limitations
 
-## Usage
+This extension currently uses the `tree-sitter-json` grammar, which means:
+- `p()`, `r()`, `c()` command wrappers are not highlighted as functions
+- `//` comments are not highlighted (not valid JSON)
+- Unquoted keys (e.g., `class:` vs `"class":`) are not parsed
+- Triple-quoted strings (`"""..."""`) are not recognized
+- Backtick strings are not recognized
 
-Open any `.jsonl` or `.ndjson` file in Zed to see syntax highlighting automatically applied.
+A custom `tree-sitter-foam-journal` grammar is planned to address these.
 
-## Development
-
-### Project Structure
+## Project Structure
 
 ```
-jsonl-syntax/
-├── extension.toml          # Extension configuration
+foam-journal-syntax-zed/
+├── extension.toml              # Extension configuration
 ├── languages/
-│   └── jsonl/
-│       ├── config.toml     # Language settings
-│       └── highlights.scm  # Highlighting rules
-├── sample.jsonl           # Test file
-└── validate.py           # Validation script
+│   └── foam-journal/
+│       ├── config.toml         # Language settings
+│       ├── highlights.scm      # Syntax highlighting rules
+│       ├── brackets.scm        # Bracket matching
+│       ├── indents.scm         # Auto-indentation rules
+│       └── outline.scm         # Code outline/structure
+├── sample.jrl                  # Sample FOAM journal file
+└── README.md
 ```
-
-### Making Changes
-
-1. Edit highlighting rules in `languages/jsonl/highlights.scm`
-2. Modify language settings in `languages/jsonl/config.toml`
-3. Reload extensions in Zed: "zed: reload extensions"
-4. Test changes with sample files
-
-## Contributing
-
-Contributions are welcome.
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## Technical Details
-
-This extension uses the tree-sitter-json grammar for parsing. Each JSONL line is treated as a separate JSON document for highlighting purposes.
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Related Resources
 
-- [JSON Lines Format Specification](http://jsonlines.org/)
+- [FOAM3 Framework](https://github.com/kgrgreer/foam3)
 - [Tree-sitter JSON Grammar](https://github.com/tree-sitter/tree-sitter-json)
 - [Zed Editor](https://zed.dev)
+- [Zed Language Extensions](https://zed.dev/docs/extensions/languages)
+
+## License
+
+MIT License - see LICENSE file for details.

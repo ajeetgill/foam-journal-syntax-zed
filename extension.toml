@@ -1,10 +1,10 @@
-id = "jsonl"
-name = "JSONL"
-version = "0.1.1"
+id = "foam-journal"
+name = "FOAM Journal"
+version = "0.1.0"
 schema_version = 1
-authors = ["Ofer Affias <ofer.affias@gmail.com>"]
-description = "JSON Lines (JSONL) syntax highlighting support for Zed"
-repository = "https://github.com/vim-zz/jsonl-syntax-zed"
+authors = ["Ajeet Gill <ajeet.gill@payticconnect.com>"]
+description = "Syntax highlighting for FOAM Journal (.jrl) files - FOAM3 framework data journals"
+repository = "https://github.com/ajeetgill/foam-journal-syntax-zed"
 
 [grammars.json]
 repository = "https://github.com/tree-sitter/tree-sitter-json"

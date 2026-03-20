@@ -1,0 +1,38 @@
+// Permission entries
+p({class:"foam.core.auth.Permission",id:"paytic-admin.*"})
+p({class:"foam.core.auth.Permission",id:"serviceprovider.read.paytic"})
+
+// Menu definition
+p({
+  "class": "foam.core.menu.Menu",
+  "id": "regulatoryReports",
+  "label": "Regulatory Reports",
+  "icon": "/images/regulation.svg",
+  "order": 0,
+  "handler": {
+    "class": "foam.core.menu.SubMenu"
+  }
+})
+
+// Service definition with inline Java code
+p({
+  "class": "foam.core.boot.CSpec",
+  "name": "transactionDAO",
+  "description": "Transaction data.",
+  "serve": true,
+  "authenticate": true,
+  "serviceScript": """
+    return new foam.dao.EasyDAO.Builder(x)
+      .setPm(true)
+      .setSeqNo(true)
+      .setOf(com.paytic.Transaction.getOwnClassInfo())
+      .build();
+  """,
+  "client": "{\"of\":\"com.paytic.Transaction\"}"
+})
+
+// Remove entry
+r({"class":"foam.core.auth.Permission","id":"old-permission"})
+
+// Test entry
+p({"class":"com.paytic.test.MyTest","id":"MyTest", language: 0})
