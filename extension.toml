@@ -8,5 +8,5 @@ repository = "https://github.com/ajeetgill/foam-journal-syntax-zed"
 
 [grammars.foam_journal]
 repository = "https://github.com/ajeetgill/foam-journal-syntax-zed"
-rev = "2848db00a0ff4b86b72d1c65cd852b344b18d805"
+rev = "c78f0666b67fe0900e2d205ce9ac883e011af7c6"
 path = "grammars/tree-sitter-foam-journal"
