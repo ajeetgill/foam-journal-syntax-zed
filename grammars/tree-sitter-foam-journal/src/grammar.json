@@ -185,6 +185,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "single_string"
+        },
+        {
+          "type": "SYMBOL",
           "name": "identifier"
         }
       ]
@@ -198,11 +202,19 @@
         },
         {
           "type": "SYMBOL",
+          "name": "single_string"
+        },
+        {
+          "type": "SYMBOL",
           "name": "triple_string"
         },
         {
           "type": "SYMBOL",
           "name": "backtick_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "template_variable"
         },
         {
           "type": "SYMBOL",
@@ -353,6 +365,42 @@
         ]
       }
     },
+    "single_string": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "'"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "single_string_content"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "'"
+        }
+      ]
+    },
+    "single_string_content": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "PATTERN",
+          "value": "[^'\\\\]+"
+        }
+      }
+    },
     "triple_string": {
       "type": "SEQ",
       "members": [
@@ -426,6 +474,27 @@
     "backtick_string_content": {
       "type": "PATTERN",
       "value": "[^`]+"
+    },
+    "template_variable": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "template_name"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "template_name": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_][a-zA-Z0-9_]*"
     },
     "number": {
       "type": "TOKEN",

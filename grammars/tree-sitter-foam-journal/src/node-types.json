@@ -32,7 +32,15 @@
           "named": true
         },
         {
+          "type": "single_string",
+          "named": true
+        },
+        {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "template_variable",
           "named": true
         },
         {
@@ -93,6 +101,11 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "key",
     "named": true,
     "fields": {},
@@ -102,6 +115,10 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "single_string",
           "named": true
         },
         {
@@ -169,7 +186,15 @@
             "named": true
           },
           {
+            "type": "single_string",
+            "named": true
+          },
+          {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "template_variable",
             "named": true
           },
           {
@@ -205,6 +230,21 @@
       "types": [
         {
           "type": "entry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "single_string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "single_string_content",
           "named": true
         }
       ]
@@ -250,6 +290,26 @@
     }
   },
   {
+    "type": "template_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "template_variable",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "template_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "triple_string",
     "named": true,
     "fields": {},
@@ -275,6 +335,10 @@
   },
   {
     "type": "\"\"\"",
+    "named": false
+  },
+  {
+    "type": "'",
     "named": false
   },
   {
@@ -331,10 +395,6 @@
     "named": true
   },
   {
-    "type": "identifier",
-    "named": true
-  },
-  {
     "type": "null",
     "named": true
   },
@@ -349,6 +409,10 @@
   {
     "type": "r",
     "named": false
+  },
+  {
+    "type": "single_string_content",
+    "named": true
   },
   {
     "type": "string_content",

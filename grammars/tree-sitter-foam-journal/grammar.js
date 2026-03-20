@@ -7,7 +7,8 @@
  * FOAM journals use commands like p({...}), r({...}), c({...}), v({...})
  * to represent Put, Remove, Create, and Version operations on FObjects.
  * The object bodies use a relaxed JSON syntax: unquoted keys, triple-quoted
- * strings (""" ... """), backtick strings, and // line comments.
+ * strings (""" ... """), single-quoted strings, backtick strings,
+ * template variables ({varName}), and // line comments.
  */
 
 module.exports = grammar({
@@ -66,14 +67,17 @@ module.exports = grammar({
     // Keys can be quoted or unquoted
     key: $ => choice(
       $.string,
+      $.single_string,
       $.identifier,
     ),
 
     // Values
     _value: $ => choice(
       $.string,
+      $.single_string,
       $.triple_string,
       $.backtick_string,
+      $.template_variable,
       $.number,
       $.true,
       $.false,
@@ -113,6 +117,16 @@ module.exports = grammar({
       ),
     )),
 
+    // Single-quoted string: '...'
+    // FOAM's StringParser accepts ' as a valid delimiter
+    single_string: $ => seq(
+      "'",
+      optional($.single_string_content),
+      "'",
+    ),
+
+    single_string_content: $ => token.immediate(prec(1, /[^'\\]+/)),
+
     // Triple-quoted string: """..."""
     // Used for multi-line Java/JS code in serviceScript, javaCode, etc.
     triple_string: $ => seq(
@@ -122,7 +136,6 @@ module.exports = grammar({
     ),
 
     // Content between triple quotes: any chars that aren't three consecutive "
-    // We match sequences of non-quote chars or lone/double quotes not followed by a third
     triple_string_content: $ => repeat1(choice(
       /[^"]+/,
       /"[^"]/,
@@ -138,6 +151,16 @@ module.exports = grammar({
     ),
 
     backtick_string_content: $ => /[^`]+/,
+
+    // Template variable: {varName} — used in deployment setup templates
+    // Pre-processed by ProjectTooling.js before journal parsing
+    template_variable: $ => seq(
+      "{",
+      $.template_name,
+      "}",
+    ),
+
+    template_name: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
     // Number: integer or float, with optional sign and exponent
     number: $ => {
@@ -156,7 +179,7 @@ module.exports = grammar({
     false: $ => "false",
     null: $ => "null",
 
-    // Unquoted identifier for keys: camelCase, PascalCase, with dots allowed
+    // Unquoted identifier for keys: camelCase, PascalCase
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
     // Line comments

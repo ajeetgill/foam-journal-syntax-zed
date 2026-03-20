@@ -50,6 +50,21 @@
   value: (string
     (string_content) @string.special))
 
+(pair
+  key: (key
+    (identifier) @property
+    (#any-of? @property "id" "name"))
+  value: (single_string
+    (single_string_content) @string.special))
+
+(pair
+  key: (key
+    (string
+      (string_content) @property
+      (#any-of? @property "id" "name")))
+  value: (single_string
+    (single_string_content) @string.special))
+
 ; Unquoted keys (identifiers)
 (pair
   key: (key
@@ -63,12 +78,16 @@
 
 ; Strings
 (string) @string
+(single_string) @string
 
 ; Triple-quoted strings (embedded code)
 (triple_string) @string
 
 ; Backtick strings (embedded code)
 (backtick_string) @string
+
+; Template variables: {adminUserId}
+(template_variable) @variable.special
 
 ; Numbers
 (number) @number
