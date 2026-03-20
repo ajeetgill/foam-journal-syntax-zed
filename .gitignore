@@ -2,16 +2,19 @@
 .DS_Store
 .DS_Store?
 
-# Node modules (in case any development tools are added)
+# Node modules
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Rust build artifacts (if any Rust code is added later)
+# Rust build artifacts
 target/
 Cargo.lock
 
-# Zed-specific
+# Zed-specific (built grammars cached by Zed)
 .zed/
-grammars/
+
+# Tree-sitter build artifacts (generated, not edited)
+grammars/tree-sitter-foam-journal/build/
+grammars/tree-sitter-foam-journal/node_modules/
