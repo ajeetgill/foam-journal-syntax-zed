@@ -1,0 +1,6 @@
+name = "FOAM JavaScript"
+grammar = "javascript"
+line_comments = ["// "]
+block_comment = ["/* ", " */"]
+tab_size = 2
+hard_tabs = false
