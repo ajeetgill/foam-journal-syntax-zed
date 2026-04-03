@@ -1,7 +1,3 @@
-; FOAM-specific highlights
-(foam_class_selector) @keyword
-(foam_token_variable) @constant
-
 ; Standard CSS highlights
 (comment) @comment
 
@@ -79,3 +75,7 @@
   "("
   "}"
 ] @punctuation.bracket
+
+; FOAM-specific highlights (after standard CSS so they take precedence)
+(foam_class_selector) @keyword
+(foam_token_variable) @constant

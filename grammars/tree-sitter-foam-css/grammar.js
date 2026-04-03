@@ -176,10 +176,10 @@ export default grammar({
 
     nesting_selector: _ => '&',
 
-    foam_class_selector: $ => seq(
+    foam_class_selector: _ => token(seq(
       '^',
-      optional(alias(/[a-zA-Z0-9-_]+/, $.class_name)),
-    ),
+      optional(/[a-zA-Z0-9-_]+/),
+    )),
 
     universal_selector: _ => '*',
 

@@ -1004,21 +1004,6 @@
     }
   },
   {
-    "type": "foam_class_selector",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "class_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "grid_value",
     "named": true,
     "fields": {},
@@ -2318,10 +2303,6 @@
     "named": false
   },
   {
-    "type": "^",
-    "named": false
-  },
-  {
     "type": "^=",
     "named": false
   },
@@ -2344,6 +2325,10 @@
   },
   {
     "type": "feature_name",
+    "named": true
+  },
+  {
+    "type": "foam_class_selector",
     "named": true
   },
   {

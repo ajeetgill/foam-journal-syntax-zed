@@ -697,30 +697,28 @@
       "value": "&"
     },
     "foam_class_selector": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "^"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "^"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
                 "type": "PATTERN",
                 "value": "[a-zA-Z0-9-_]+"
               },
-              "named": true,
-              "value": "class_name"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
     },
     "universal_selector": {
       "type": "STRING",
