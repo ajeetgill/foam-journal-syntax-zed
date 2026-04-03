@@ -11,6 +11,12 @@
   (#eq? @_obj "foam")
   (#eq? @_key "name")) @item
 
+; extends key with its value
+(pair
+  key: (property_identifier) @context
+  value: (string (string_fragment) @name)
+  (#eq? @context "extends")) @item
+
 ; Axiom sections: properties, methods, actions, etc.
 (pair
   key: (property_identifier) @name
