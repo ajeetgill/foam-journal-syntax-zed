@@ -1,6 +1,6 @@
 ; FOAM-specific highlights
-(foam_class_selector) @tag
-(foam_token_variable) @variable.special
+(foam_class_selector) @keyword
+(foam_token_variable) @constant
 
 ; Standard CSS highlights
 (comment) @comment
@@ -60,9 +60,9 @@
 (string_value) @string
 (color_value) @string.special
 
-(integer_value) @number
-(float_value) @number
-(unit) @type
+(integer_value) @embedded
+(float_value) @embedded
+(unit) @embedded
 
 [
   "#"

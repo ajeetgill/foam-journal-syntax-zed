@@ -6,6 +6,12 @@
 ; Properties
 ;-----------
 
+; FOAM class/package references highlighted as types
+(pair
+  key: (property_identifier) @property
+  (#any-of? @property "of" "extends" "package")
+  value: (string (string_fragment) @type))
+
 (property_identifier) @property
 
 ; Function and method definitions

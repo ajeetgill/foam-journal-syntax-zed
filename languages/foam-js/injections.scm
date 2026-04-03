@@ -56,4 +56,4 @@
   value: (template_string
     (string_fragment) @injection.content)
   (#eq? @_key "css")
-  (#set! injection.language "foam_css"))
+  (#set! injection.language "FOAM CSS"))
