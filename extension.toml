@@ -17,5 +17,5 @@ rev = "58404d8cf191d69f2674a8fd507bd5776f46cb11"
 
 [grammars.foam_css]
 repository = "https://github.com/ajeetgill/foam-journal-syntax-zed"
-rev = "858e69ebdfea564c81d341ba243f43c1f85e9999"
+rev = "a4db92d28ef00c986e5aab2a03e8a7354d363dbd"
 path = "grammars/tree-sitter-foam-css"
