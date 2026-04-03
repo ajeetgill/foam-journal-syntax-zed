@@ -1,23 +1,30 @@
 ; ============================================================
 ; FOAM JavaScript — Language Injections
-; Injects Java/CSS highlighting into FOAM model string literals
+; Injects Java/FOAM CSS highlighting into FOAM model string literals
 ; ============================================================
 
 ; --- Java injection for backtick (template) strings ---
 
-; javaCode, javaFactory, javaPreSet, javaPostSet, javaGetter, javaSetter
 (pair
   key: (property_identifier) @_key
   value: (template_string
     (string_fragment) @injection.content)
   (#any-of? @_key
     "javaCode" "javaFactory"
-    "javaPreSet" "javaPostSet"
     "javaGetter" "javaSetter"
+    "javaPreSet" "javaPostSet"
+    "javaAdapt" "javaCompare"
+    "javaComparePropertyToObject" "javaComparePropertyToValue"
+    "javaCloneProperty" "javaDiffProperty"
+    "javaFormatJSON" "javaJSONParser"
+    "javaCSVParser" "javaQueryParser"
+    "javaToCSV" "javaToCSVLabel"
+    "javaFromCSVLabelMapping"
+    "javaAssertValue" "javaValidateObj"
     "javaCondition" "javaValue"
-    "javaCompare")
-  (#set! injection.language "java")
-  (#set! injection.include-children))
+    "javaImports"
+    "code" "serviceScript")
+  (#set! injection.language "java"))
 
 ; --- Java injection for single/double quoted strings ---
 
@@ -27,19 +34,26 @@
     (string_fragment) @injection.content)
   (#any-of? @_key
     "javaCode" "javaFactory"
-    "javaPreSet" "javaPostSet"
     "javaGetter" "javaSetter"
+    "javaPreSet" "javaPostSet"
+    "javaAdapt" "javaCompare"
+    "javaComparePropertyToObject" "javaComparePropertyToValue"
+    "javaCloneProperty" "javaDiffProperty"
+    "javaFormatJSON" "javaJSONParser"
+    "javaCSVParser" "javaQueryParser"
+    "javaToCSV" "javaToCSVLabel"
+    "javaFromCSVLabelMapping"
+    "javaAssertValue" "javaValidateObj"
     "javaCondition" "javaValue"
-    "javaCompare")
-  (#set! injection.language "java")
-  (#set! injection.include-children))
+    "javaImports"
+    "code" "serviceScript")
+  (#set! injection.language "java"))
 
-; --- CSS injection for backtick strings ---
+; --- FOAM CSS injection for backtick strings ---
 
 (pair
   key: (property_identifier) @_key
   value: (template_string
     (string_fragment) @injection.content)
   (#eq? @_key "css")
-  (#set! injection.language "css")
-  (#set! injection.include-children))
+  (#set! injection.language "foam_css"))

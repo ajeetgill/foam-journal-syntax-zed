@@ -1,61 +1,92 @@
-; Inject Java highlighting into triple-quoted strings for known Java code keys
+; ============================================================
+; FOAM Journal — Language Injections
+; Injects Java highlighting into journal entry string values
+; ============================================================
 
-; "code" — Script entries
+; --- Java injection for triple-quoted strings (quoted keys) ---
+
 (pair
   key: (key (string (string_content) @_key))
   value: (triple_string (triple_string_content) @injection.content)
-  (#eq? @_key "code")
-  (#set! injection.language "java")
-  (#set! injection.include-children))
+  (#any-of? @_key
+    "javaCode" "javaFactory"
+    "javaGetter" "javaSetter"
+    "javaPreSet" "javaPostSet"
+    "javaAdapt" "javaCompare"
+    "javaComparePropertyToObject" "javaComparePropertyToValue"
+    "javaCloneProperty" "javaDiffProperty"
+    "javaFormatJSON" "javaJSONParser"
+    "javaCSVParser" "javaQueryParser"
+    "javaToCSV" "javaToCSVLabel"
+    "javaFromCSVLabelMapping"
+    "javaAssertValue" "javaValidateObj"
+    "javaCondition" "javaValue"
+    "javaImports"
+    "code" "serviceScript")
+  (#set! injection.language "java"))
+
+; --- Java injection for triple-quoted strings (unquoted keys) ---
 
 (pair
   key: (key (identifier) @_key)
   value: (triple_string (triple_string_content) @injection.content)
-  (#eq? @_key "code")
-  (#set! injection.language "java")
-  (#set! injection.include-children))
+  (#any-of? @_key
+    "javaCode" "javaFactory"
+    "javaGetter" "javaSetter"
+    "javaPreSet" "javaPostSet"
+    "javaAdapt" "javaCompare"
+    "javaComparePropertyToObject" "javaComparePropertyToValue"
+    "javaCloneProperty" "javaDiffProperty"
+    "javaFormatJSON" "javaJSONParser"
+    "javaCSVParser" "javaQueryParser"
+    "javaToCSV" "javaToCSVLabel"
+    "javaFromCSVLabelMapping"
+    "javaAssertValue" "javaValidateObj"
+    "javaCondition" "javaValue"
+    "javaImports"
+    "code" "serviceScript")
+  (#set! injection.language "java"))
 
-; "serviceScript" — CSpec service definitions
-(pair
-  key: (key (string (string_content) @_key))
-  value: (triple_string (triple_string_content) @injection.content)
-  (#eq? @_key "serviceScript")
-  (#set! injection.language "java")
-  (#set! injection.include-children))
+; --- Java injection for backtick strings (quoted keys) ---
 
-(pair
-  key: (key (identifier) @_key)
-  value: (triple_string (triple_string_content) @injection.content)
-  (#eq? @_key "serviceScript")
-  (#set! injection.language "java")
-  (#set! injection.include-children))
-
-; "javaCode" — method bodies
-(pair
-  key: (key (string (string_content) @_key))
-  value: (triple_string (triple_string_content) @injection.content)
-  (#eq? @_key "javaCode")
-  (#set! injection.language "java")
-  (#set! injection.include-children))
-
-(pair
-  key: (key (identifier) @_key)
-  value: (triple_string (triple_string_content) @injection.content)
-  (#eq? @_key "javaCode")
-  (#set! injection.language "java")
-  (#set! injection.include-children))
-
-; Also handle backtick strings for the same keys
 (pair
   key: (key (string (string_content) @_key))
   value: (backtick_string (backtick_string_content) @injection.content)
-  (#any-of? @_key "code" "serviceScript" "javaCode")
-  (#set! injection.language "java")
-  (#set! injection.include-children))
+  (#any-of? @_key
+    "javaCode" "javaFactory"
+    "javaGetter" "javaSetter"
+    "javaPreSet" "javaPostSet"
+    "javaAdapt" "javaCompare"
+    "javaComparePropertyToObject" "javaComparePropertyToValue"
+    "javaCloneProperty" "javaDiffProperty"
+    "javaFormatJSON" "javaJSONParser"
+    "javaCSVParser" "javaQueryParser"
+    "javaToCSV" "javaToCSVLabel"
+    "javaFromCSVLabelMapping"
+    "javaAssertValue" "javaValidateObj"
+    "javaCondition" "javaValue"
+    "javaImports"
+    "code" "serviceScript")
+  (#set! injection.language "java"))
+
+; --- Java injection for backtick strings (unquoted keys) ---
 
 (pair
   key: (key (identifier) @_key)
   value: (backtick_string (backtick_string_content) @injection.content)
-  (#any-of? @_key "code" "serviceScript" "javaCode")
-  (#set! injection.language "java")
-  (#set! injection.include-children))
+  (#any-of? @_key
+    "javaCode" "javaFactory"
+    "javaGetter" "javaSetter"
+    "javaPreSet" "javaPostSet"
+    "javaAdapt" "javaCompare"
+    "javaComparePropertyToObject" "javaComparePropertyToValue"
+    "javaCloneProperty" "javaDiffProperty"
+    "javaFormatJSON" "javaJSONParser"
+    "javaCSVParser" "javaQueryParser"
+    "javaToCSV" "javaToCSVLabel"
+    "javaFromCSVLabelMapping"
+    "javaAssertValue" "javaValidateObj"
+    "javaCondition" "javaValue"
+    "javaImports"
+    "code" "serviceScript")
+  (#set! injection.language "java"))
