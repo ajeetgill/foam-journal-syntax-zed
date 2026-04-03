@@ -1619,7 +1619,7 @@ static const TSCharacterRange sym_plain_value_character_set_1[] = {
 };
 
 static const TSCharacterRange sym_plain_value_character_set_2[] = {
-  {0, 0x08}, {0x0e, 0x1f}, {'"', '\''}, {'*', '+'}, {'-', ':'}, {'<', 'Z'}, {'\\', '\\'}, {'^', 'z'},
+  {0, 0x08}, {0x0e, 0x1f}, {'"', '\''}, {'*', '+'}, {'-', '9'}, {'<', 'Z'}, {'\\', '\\'}, {'^', 'z'},
   {'|', '|'}, {'~', 0x10ffff},
 };
 
@@ -2387,7 +2387,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
     case 33:
       if (lookahead == '*') ADVANCE(35);
       if (lookahead == '/') ADVANCE(425);
-      if ((!eof && set_contains(sym_plain_value_character_set_2, 10, lookahead))) ADVANCE(53);
+      if ((!eof && set_contains(sym_plain_value_character_set_1, 10, lookahead))) ADVANCE(53);
       END_STATE();
     case 34:
       if (lookahead == '*') ADVANCE(34);
@@ -4031,7 +4031,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(anon_sym_SLASH);
       if (lookahead == '*') ADVANCE(35);
       if (lookahead == '/') ADVANCE(425);
-      if ((!eof && set_contains(sym_plain_value_character_set_2, 10, lookahead))) ADVANCE(53);
+      if ((!eof && set_contains(sym_plain_value_character_set_1, 10, lookahead))) ADVANCE(53);
       END_STATE();
     case 305:
       ACCEPT_TOKEN(aux_sym_class_name_token1);

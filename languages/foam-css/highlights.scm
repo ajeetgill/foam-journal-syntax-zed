@@ -1,3 +1,5 @@
+(ERROR) @error
+
 ; Standard CSS highlights
 (comment) @comment
 
@@ -78,4 +80,5 @@
 
 ; FOAM-specific highlights (after standard CSS so they take precedence)
 (foam_class_selector) @keyword
+(class_selector (foam_class_selector) (class_name) @attribute)
 (foam_token_variable) @constant

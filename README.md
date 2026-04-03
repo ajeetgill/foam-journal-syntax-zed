@@ -75,6 +75,10 @@ foam-journal-syntax-zed/
 └── README.md
 ```
 
+## Known Limitations
+
+- **FOAM CSS: unquoted URLs with colons** — The FOAM CSS grammar excludes `:` from plain values to detect missing semicolons. This means `url(http://example.com)` will show a false error. Use quoted URLs instead: `url("http://example.com")`. This does not affect relative paths like `url(/images/icon.svg)` or quoted URLs.
+
 ## Related Resources
 
 - [FOAM3 Framework](https://github.com/kgrgreer/foam3)

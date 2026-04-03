@@ -497,7 +497,7 @@ export default grammar({
       )),
       /[a-zA-Z]/,
       repeat(choice(
-        /[^/\s,;!{}()\[\]]/, // Not a slash, not a delimiter character
+        /[^/:\s,;!{}()\[\]]/, // Not a slash, not a colon, not a delimiter character
         /\/[^\*\s,;!{}()\[\]]/, // Slash not followed by a '*' (which would be a comment)
       )),
     )),

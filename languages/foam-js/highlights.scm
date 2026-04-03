@@ -1,3 +1,5 @@
+(ERROR) @error
+
 ; Variables
 ;----------
 

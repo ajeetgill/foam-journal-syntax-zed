@@ -1,3 +1,5 @@
+(ERROR) @error
+
 ; Commands: each gets a distinct color
 ; p (put) — standard function color (blue)
 ((command) @function
